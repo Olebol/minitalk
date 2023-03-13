@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   server.c                                           :+:    :+:            */
+/*   client.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: opelser <opelser@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/08 17:17:07 by opelser       #+#    #+#                 */
-/*   Updated: 2023/03/13 19:28:33 by opelser       ########   odam.nl         */
+/*   Created: 2023/03/13 15:21:28 by opelser       #+#    #+#                 */
+/*   Updated: 2023/03/13 19:11:34 by opelser       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void handler(int sig)
+int	main(int argc, char **argv)
 {
-	printf("received signal: %d\n", sig);
-}
+	(void) argc;
+	int pid = atoi(argv[1]);
 
-int	main(void)
-{
-	int pid;
-
-	pid = getpid();
-	printf("Started...\nPID: %d\n\n", pid);
-	signal(SIGUSR1, &handler);
-	while (1)
-		pause();
+	kill(pid, SIGUSR1);
 	return 0;
 }
 
+// void sighandler_usr1(int sig)
+// {
+	
+// }
