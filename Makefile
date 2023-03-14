@@ -11,3 +11,4 @@ clean:
 	@rm -rf server
 	@rm -rf client
 	@rm -rf a.out
+	@clear
