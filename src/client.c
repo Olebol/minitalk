@@ -6,13 +6,17 @@
 /*   By: opelser <opelser@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/13 15:21:28 by opelser       #+#    #+#                 */
-/*   Updated: 2023/03/14 22:22:54 by opelser       ########   odam.nl         */
+/*   Updated: 2023/03/15 17:56:16 by opelser       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+#define MSG_RECEIVED "The message has been received!\n"
+
 int signal_received;
+
+int count = 0;
 
 void	chartobin(int pid, char c)
 {
@@ -20,14 +24,15 @@ void	chartobin(int pid, char c)
 
 	for (int i = 7; i >= 0; i--)
 	{
-		signal_received = 0;
 		bin = (1 & (c >> i));
 		if (bin == 0)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		if (!signal_received)
-			pause();
+		while (!signal_received)
+			;
+		signal_received = 0;
+		count++;
 	}
 }
 
@@ -38,7 +43,7 @@ void received_handler(int sig)
 
 void succesful_handler(int sig)
 {
-	printf("The message has been received!\n");
+	write(1, MSG_RECEIVED, sizeof(MSG_RECEIVED));
 	exit(EXIT_SUCCESS);
 }
 
