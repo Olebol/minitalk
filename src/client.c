@@ -6,7 +6,7 @@
 /*   By: opelser <opelser@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/13 15:21:28 by opelser       #+#    #+#                 */
-/*   Updated: 2023/03/20 20:44:07 by opelser       ########   odam.nl         */
+/*   Updated: 2023/03/20 20:58:56 by opelser       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void	chartobin(int pid, char c)
 
 void	received_handler(int sig)
 {
+	(void) sig;
 	g_signal_received = 1;
 }
 
 void	succesful_handler(int sig)
 {
+	(void) sig;
 	write(1, RECEIVED_MSG, sizeof(RECEIVED_MSG));
 	exit(EXIT_SUCCESS);
 }

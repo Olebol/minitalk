@@ -6,11 +6,12 @@
 /*   By: opelser <opelser@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 20:05:20 by opelser       #+#    #+#                 */
-/*   Updated: 2023/03/20 20:41:34 by opelser       ########   odam.nl         */
+/*   Updated: 2023/03/20 21:00:03 by opelser       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 
 #define ERROR_MSG "An error occured during sending the signals\n"
 
