@@ -17,9 +17,10 @@ CFLAGS := -Wall -Werror -Wextra
 HDR_FILES :=	minitalk.h
 
 # Files
-SRC_FILES :=	client.c	\
-				server.c	\
-				utils.c		\
+SRC_FILES :=	client.c		\
+				server.c		\
+				utils.c			\
+				client_utils.c	\
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ := ${addprefix ${OBJ_DIR}/, ${SRC_FILES:.c=.o}}
@@ -42,7 +43,7 @@ $(SERVER): $(OBJ)
 
 $(CLIENT): $(OBJ)
 	@echo "$(YELLOW)$(BOLD)Compiling $(CLIENT_NICKNAME)...$(RESET)"
-	@gcc obj/client.o obj/utils.o -o $(CLIENT)
+	@gcc obj/client.o obj/utils.o obj/client_utils.o -o $(CLIENT)
 	@echo "$(GREEN)$(BOLD)$(CLIENT_NICKNAME) Compiled$(RESET)"
 
 $(OBJ_DIR)/%.o: src/%.c $(HDR)

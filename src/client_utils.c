@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minitalk.h                                         :+:    :+:            */
+/*   client_utils.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: opelser <opelser@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/03/20 20:20:37 by opelser       #+#    #+#                 */
-/*   Updated: 2023/03/21 13:27:42 by opelser       ########   odam.nl         */
+/*   Created: 2023/03/21 13:24:36 by opelser       #+#    #+#                 */
+/*   Updated: 2023/03/21 13:28:01 by opelser       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-# include <unistd.h>
-# include <stdio.h>
-# include <signal.h>
-# include <stdlib.h>
+int	is_digit(char *str)
+{
+	int		i;
 
-// ~ utils.c
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-size_t		ft_strlen(const char *str);
-void		ft_putstr(char *s);
-void		ft_putchar(char c);
-void		ft_putnbr(int n);
-void		ft_error(void);
+int	ft_atoi(const char *str)
+{
+	int		i;
+	int		result;
 
-// ~ client_utils.c
-
-int			is_digit(char *str);
-int			ft_atoi(const char *str);
-
-#endif
+	i = 0;
+	result = 0;
+	while ((str[i] >= '0' && str[i] <= '9'))
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result);
+}

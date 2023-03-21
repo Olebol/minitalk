@@ -6,7 +6,7 @@
 /*   By: opelser <opelser@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/08 17:17:07 by opelser       #+#    #+#                 */
-/*   Updated: 2023/03/20 20:43:21 by opelser       ########   odam.nl         */
+/*   Updated: 2023/03/21 13:31:37 by opelser       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	handler(int sig, siginfo_t *client, void *context)
 		if (kill(client->si_pid, SIGUSR2) == -1)
 			ft_error();
 		count = 0;
-		write(1, "\n", 1);
+		write(1, "\n\n", 2);
 	}
 	if (kill(client->si_pid, SIGUSR1) == -1)
 		ft_error();

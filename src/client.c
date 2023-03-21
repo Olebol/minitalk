@@ -6,17 +6,18 @@
 /*   By: opelser <opelser@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/13 15:21:28 by opelser       #+#    #+#                 */
-/*   Updated: 2023/03/20 20:58:56 by opelser       ########   odam.nl         */
+/*   Updated: 2023/03/21 13:37:36 by opelser       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
 #define RECEIVED_MSG "The message has been received!\n"
+#define INVALID_ARG_MSG "Invalid arguments\n"
 
 int		g_signal_received;
 
-void	chartobin(int pid, char c)
+void	char_to_bin(int pid, char c)
 {
 	int		bin;
 	int		check;
@@ -59,15 +60,17 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	if (argc != 3)
-		return (1);
-	pid = atoi(argv[1]);
+		return (write(1, INVALID_ARG_MSG, sizeof(INVALID_ARG_MSG)), 1);
+	if (!is_digit(argv[1]))
+		return (write(1, INVALID_ARG_MSG, sizeof(INVALID_ARG_MSG)), 1);
+	pid = ft_atoi(argv[1]);
 	signal(SIGUSR1, &received_handler);
 	signal(SIGUSR2, &succesful_handler);
 	while (argv[2][i] != '\0')
 	{
-		chartobin(pid, argv[2][i]);
+		char_to_bin(pid, argv[2][i]);
 		i++;
 	}
-	chartobin(pid, 0);
+	char_to_bin(pid, 0);
 	return (0);
 }
